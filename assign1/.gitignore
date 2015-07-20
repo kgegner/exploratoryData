@@ -1,0 +1,50 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# R Files #
+###########
+*.Rproj
+*.RData
+.Rproj.user
+.Rhistory
+.Rapp.history
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+ 
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+ 
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+.Rapp.history	assign1.Rproj	plot2.R		plot4.R
+..		.Rhistory	getdata.R	plot2.png	plot4.png
+.DS_Store	.Rproj.user	plot1.R		plot3.R
+.RData		.gitignore	plot1.png	plot3.png
