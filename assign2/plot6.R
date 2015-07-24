@@ -64,7 +64,7 @@ plot6 <- function() {
   
   # Plot yearly emissions for motor vehicle sources by sector and city 
   g <- ggplot(final_data,aes(year,Total.Emissions))
-  # ggplot pieces: plot + color dots by city + put legend at bottom + plot in panels by sector and let y axis adjust for each city's emissions + labels + make x axis labels vertical
+  # ggplot pieces: plot + color dots by city + no legend + plot in panels by sector and let y axis adjust for each city's emissions + labels + make x axis labels vertical
   g + geom_point(aes(color=city)) + theme(legend.position="none") + facet_grid(city~ EI.Sector,scales="free_y") + labs(title="Annual Emissions for Motor Vehicle Sources", x="Year", y="Emissions (tons)") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
   
   # Save above plot
