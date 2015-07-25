@@ -1,13 +1,6 @@
 plot3 <- function() {
   
-  # Get NEI cached data, will be NULL if NEI data not yet loaded
-  NEI <- dataCache$getNEI()
-  
-  # NEI data hasn't been loaded yet, so load it, and assign to NEI data frame
-  if(is.null(NEI)){
-    dataCache$loadNEI()
-    NEI <- dataCache$getNEI()
-  }
+  getdata()
   
   # Create subset of NEI data for city of Baltimore, Maryland (fips=24510)
   balt_data <- subset(NEI,NEI$fips=="24510")

@@ -1,13 +1,6 @@
 plot1 <- function() {
   
-  # Get NEI cached data, will be NULL if NEI data not yet loaded
-  NEI <- dataCache$getNEI()
-  
-  # NEI data hasn't been loaded yet, so load it, and create NEI data frame
-  if(is.null(NEI)){
-    dataCache$loadNEI()
-    NEI <- dataCache$getNEI()
-  }
+  getdata()
   
   # Sum emissions from all sources for each year
   yrly_emiss <- aggregate(NEI$Emissions ~ NEI$year, data=NEI, sum)

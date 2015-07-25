@@ -1,8 +1,20 @@
 getdata <- function() {
   
-  # Read data for PM2.5 emmissions in years 1999, 2002, 2005, and 2008
-  NEI <<- readRDS("../data/exdata-data-NEI_data/summarySCC_PM25.rds")
+  # Get NEI cached data, will be NULL if NEI data not yet loaded
+  NEI <- dataCache$getNEI()
   
-  # Read data for mapping the source classification code to the emissions data
-  SCC <<- readRDS("../data/exdata-data-NEI_data/Source_Classification_Code.rds")
+  # NEI data hasn't been loaded yet, so load it, and assign to NEI data frame
+  if(is.null(NEI)){
+    dataCache$loadNEI()
+    NEI <<- dataCache$getNEI()
+  }
+  
+  # Get SCC cached data, will be NULL if SCC data not yet loaded
+  SCC <- dataCache$getSCC()
+  
+  # SCC data hasn't been loaded yet, so load it, and assign to SCC data frame
+  if(is.null(SCC)){
+    dataCache$loadSCC()
+    SCC <<- dataCache$getSCC()
+  }
 }
