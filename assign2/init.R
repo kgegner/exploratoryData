@@ -17,6 +17,9 @@ init <- function() {
   # Create dataCache object to store NEI and SCC data
   dataCache <<- makeDataCache()
   
+  # Read data for PM2.5 emmissions in years 1999, 2002, 2005, and 2008
   NEI <<- tbl_df(readRDS("../data/exdata-data-NEI_data/summarySCC_PM25.rds"))
+  
+  # Read data for mapping the source classification code to the emissions data
   SCC <<- tbl_df(readRDS("../data/exdata-data-NEI_data/Source_Classification_Code.rds"))
 }
