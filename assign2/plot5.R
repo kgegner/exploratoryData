@@ -29,9 +29,22 @@ plot5 <- function() {
     # 4. Select columns to include in final data frame
     select(year, EI.Sector, Total.Emissions) 
   
+  # Sum emissions for each year across all motor vehicle sources
+  baltVehTotals <- cleanData %>%
+    # 1. Specify columns for grouping
+    group_by(year) %>%
+    # 2. Sum emissions from each source type for each year
+    summarize(Total.Emissions = sum(Total.Emissions), EI.Sector="Combined") %>%
+    # 3. Select columns to include
+    select(year,EI.Sector,Total.Emissions)
+  
+  # Add the combined motor vehicle source emissions to final_data 
+  finalData <- rbind(cleanData,baltVehTotals)
+  finalData <- with(finalData, finalData[order(year,EI.Sector),])
+  
   # Plot yearly emissions for motor vehicle sources by sector
-  g <- ggplot(cleandata,aes(year,Total.Emissions))
-  g + geom_point(aes(color=EI.Sector)) + geom_line(aes(color=EI.Sector)) + labs(title="Annual PM-2.5 Emissions for Motor Vehicle Sources", x="Year", y="Emissions (tons)")
+  g <- ggplot(finalData,aes(year,Total.Emissions))
+  g + geom_point(aes(color=EI.Sector)) + geom_line(aes(color=EI.Sector)) + labs(title="Annual Motor Vehicle Emissions in Baltimore, MD", x="Year", y="Emissions (tons)")
   
   # Save above plot
   ggsave("plot5.png")
