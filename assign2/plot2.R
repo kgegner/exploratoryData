@@ -1,13 +1,16 @@
+# plot2 creates scatterplot of annual emissions from all PM-2.5 polluting sources
+# in the city of Baltimore, Maryland
+
 plot2 <- function() {
   
   getdata()
   
   # Create subset of NEI data for city of Baltimore, Maryland (fips=24510)
-  balt_dat <- subset(NEI,NEI$fips=="24510")
+  baltData <- subset(NEI,NEI$fips=="24510")
   
   # Sum Baltimore, MD's emissions from all sources for each year
-  balt_yrly_emiss <- aggregate(balt_dat$Emissions ~ balt_dat$year, data=balt_dat,sum)
-  names(balt_yrly_emiss) <- c("Year","Emissions")
+  baltYrlyEmiss <- aggregate(baltData$Emissions ~ baltData$year, data=baltData, sum)
+  names(baltYrlyEmiss) <- c("Year","Emissions")
   
   # Open PNG device and make a png file for plot below
   png("plot2.png",width=480,height=480)
@@ -16,10 +19,10 @@ plot2 <- function() {
   par(mar=c(5,5,4,2))
   
   # Create linear regression model of Baltimore, MD yearly emissions
-  lmfit <- lm(balt_yrly_emiss$Emissions ~ balt_yrly_emiss$Year)
+  lmfit <- lm(baltYrlyEmiss$Emissions ~ baltYrlyEmiss$Year)
   
   # Plot Baltimore, MD's total emissions per year, with linear regression model
-  plot(balt_yrly_emiss$Year,balt_yrly_emiss$Emissions,
+  plot(baltYrlyEmiss$Year,baltYrlyEmiss$Emissions,
        main="Annual PM-2.5 Emissions (all sources) in Baltimore, Maryland",
        xlab="Year", ylab="Emissions (tons)")
   abline(lmfit)

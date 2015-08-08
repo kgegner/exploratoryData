@@ -1,3 +1,6 @@
+# plot 5 creates line plot of annual emissions from motor vehicle sources 
+# in Baltimore, Maryland
+
 plot5 <- function() {
 
   getdata()
@@ -9,14 +12,14 @@ plot5 <- function() {
   SCC_vehicle_vals <- as.character(unique(SCC_vehicles$SCC))
   
   # Join NEI and SCC into one data frame for all motor vehicle sources
-  veh_data <- inner_join(NEI, SCC_vehicles, by="SCC") %>% 
+  vehicleData <- inner_join(NEI, SCC_vehicles, by="SCC") %>% 
     filter(SCC %in% SCC_vehicle_vals)
   
   # Select vehicle source data for Baltimore, MD 
-  balt_veh_data <- filter(veh_data, str_detect(fips, "24510"))
+  baltVehData <- filter(vehicleData, str_detect(fips, "24510"))
   
   # Sort and modify balt_veh_data for plotting
-  cleandata <- balt_veh_data %>% 
+  cleanData <- baltVehData %>% 
     # 1. Clean up EI.Sector descriptions
     mutate(EI.Sector = str_replace_all(EI.Sector, "Mobile - On-Road ", "")) %>%
     # 2. Specify columns used for grouping
@@ -28,7 +31,7 @@ plot5 <- function() {
   
   # Plot yearly emissions for motor vehicle sources by sector
   g <- ggplot(cleandata,aes(year,Total.Emissions))
-  g + geom_point(color="navy") + facet_wrap(~EI.Sector) + geom_smooth(color="olivedrab",method="lm",se=FALSE) + labs(title="Annual Emissions for Motor Vehicle Sources", x="Year", y="Emissions (tons)")
+  g + geom_point(aes(color=EI.Sector)) + geom_line(aes(color=EI.Sector)) + labs(title="Annual PM-2.5 Emissions for Motor Vehicle Sources", x="Year", y="Emissions (tons)")
   
   # Save above plot
   ggsave("plot5.png")
