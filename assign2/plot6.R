@@ -1,3 +1,6 @@
+# plot6 creates line plot of annual motor vehicle emissions 
+# in Los Angeles, California and Baltimore, Maryland
+
 plot6 <- function() {
   
   getdata()
