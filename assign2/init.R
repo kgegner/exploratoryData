@@ -11,6 +11,7 @@ init <- function() {
   source("filterdata.R")
   source("cleandata1.R")
   source("cleandata2.R")
+  source("totals.R")
   source("plot1.R")
   source("plot2.R")
   source("plot3.R")
