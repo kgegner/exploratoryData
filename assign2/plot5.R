@@ -11,7 +11,7 @@ plot5 <- function() {
   baltVehicleData <- filter(vehicleData, str_detect(fips, "24510"))
   
   # Clean data: remove unecessary columns, shorten descriptions, and sum total emissions for Baltimore, MD
-  cleanData <- cleandata2(baltVehicleData,replaceString1 = "Mobile - On-Road ", replaceString2 = "Vehicles", groupingCol = "EI.Sector")
+  cleanData <- cleandata(baltVehicleData,replaceString1 = "Mobile - On-Road ", replaceString2 = "Vehicles", groupingCol = "EI.Sector")
   
   # Create final data frame with types of motor vehicle source emissions and total emissions for all motor vehicles
   finalData <- totals(cleanData)

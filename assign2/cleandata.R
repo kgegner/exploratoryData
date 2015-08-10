@@ -2,7 +2,7 @@
 # emissions of the requested source type. The resulting data frame is ready
 # for plotting.
 
-cleandata1 <- function(filteredData,replaceString1,groupingCol,emissionsDivisor=1) {
+cleandata <- function(filteredData,replaceString1,replaceString2,groupingCol,emissionsDivisor=1) {
   
   if (groupingCol == "type") {
     
@@ -10,10 +10,11 @@ cleandata1 <- function(filteredData,replaceString1,groupingCol,emissionsDivisor=
       
       # 1. Clean up EI.Sector descriptions
       mutate(EI.Sector = str_replace_all(EI.Sector, replaceString1, "")) %>% 
-      
+      mutate(EI.Sector = str_replace_all(EI.Sector, replaceString2, "")) %>% 
+    
       # 2. Specify columns used for grouping
       group_by(year,type) %>% 
-      
+    
       # 3. Sum annual emissions for each requested source type
       summarize(Total.Emissions = sum(Emissions)/emissionsDivisor) %>%
       
@@ -27,7 +28,8 @@ cleandata1 <- function(filteredData,replaceString1,groupingCol,emissionsDivisor=
       
       # 1. Clean up EI.Sector descriptions
       mutate(EI.Sector = str_replace_all(EI.Sector, replaceString1, "")) %>% 
-   
+      mutate(EI.Sector = str_replace_all(EI.Sector, replaceString2, "")) %>% 
+      
       # 2. Specify columns used for grouping
       group_by(year,EI.Sector) %>% 
       

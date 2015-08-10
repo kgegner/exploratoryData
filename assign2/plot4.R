@@ -8,7 +8,7 @@ plot4 <- function() {
   coalData <- filterdata("Coal")
   
   # Shorten EI.Sector descriptions, sum emmisions for each coal source, and get rid of extra columns
-  cleanData <- cleandata2(filteredData=coalData,replaceString1 = "Fuel Comb - ", replaceString2 = "- Coal", groupingCol = "EI.Sector", emissionsDivisor=1000)
+  cleanData <- cleandata(filteredData=coalData,replaceString1 = "Fuel Comb - ", replaceString2 = "- Coal", groupingCol = "EI.Sector", emissionsDivisor=1000)
   
   # Create final data frame with types of coal source emissions and total emissions for all coal sources
   finalData <- totals(cleanData)
