@@ -1,5 +1,8 @@
+# If data not yet loaded, loads NEI and SCC data.
+# If data already loaded, reads NEI and SCC from the data cache.
+
 getdata <- function() {
-  
+
   # Get NEI cached data, will be NULL if NEI data not yet loaded
   NEI <- dataCache$getNEI()
   

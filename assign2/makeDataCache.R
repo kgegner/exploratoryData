@@ -1,6 +1,10 @@
+# Creates data cache, so data only loaded once. This function assumes the data
+# is already downloaded and saved at the path:
+#   ~/Documents/Programming/R/coursera/exploratorydata/data/exdata-data-NEI_data
+
 makeDataCache <- function() {
   
-  # Assign NEI and SCC as NULL when new importData object created
+  # Assign NEI and SCC as NULL when new makeDataCache object created
   NEI <- NULL
   SCC <- NULL
   
