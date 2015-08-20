@@ -8,7 +8,7 @@ plot3 <- function() {
   # Create subset of NEI data for city of Baltimore, Maryland (fips=24510)
   baltData <- subset(NEI,NEI$fips=="24510")
   
-  # Sort and modify balt_data for plotting
+  # Sort and modify Baltimore,MD data for plotting
   cleanData <- baltData %>%
     # 1. Specify columns used for grouping
     group_by(type, year) %>% 

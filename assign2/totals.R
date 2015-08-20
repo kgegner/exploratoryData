@@ -1,3 +1,6 @@
+# Sum emissions across relevant EI.Sectors into a combined value
+# Create final data set with emissions data for individual and combined EI.Sectors 
+
 totals <- function(cleanData,groupBy="year") {
   
   if (groupBy =="year") {

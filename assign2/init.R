@@ -1,6 +1,6 @@
 init <- function() {
   
-  # Run first thing, sets up workspace and required functions/variables/objects
+  # Run first thing, sets up workspace and required functions,variables, and objects
   
   library(dplyr)
   library(ggplot2)
